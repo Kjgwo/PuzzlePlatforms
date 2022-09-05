@@ -14,6 +14,8 @@ APlatformsTrigger::APlatformsTrigger()
 	if (!ensure(TriggerVolume != nullptr)) return;
 	RootComponent = TriggerVolume;
 
+	TriggerVolume->OnComponentBeginOverlap.AddDynamic(this, &APlatformsTrigger::OnOverlapBegin);
+	TriggerVolume->OnComponentEndOverlap.AddDynamic(this, &APlatformsTrigger::OnOverlapEnd);
 }
 
 // Called when the game starts or when spawned
@@ -28,5 +30,15 @@ void APlatformsTrigger::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+}
+
+void APlatformsTrigger::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	UE_LOG(LogTemp, Warning, TEXT("Activated"));
+}
+
+void APlatformsTrigger::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+{
+	UE_LOG(LogTemp, Warning, TEXT("Deactivated"));
 }
 
