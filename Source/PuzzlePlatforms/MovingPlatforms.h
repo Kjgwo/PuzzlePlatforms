@@ -17,6 +17,9 @@ private:
 	FVector GlobalTargetLocation;
 	FVector GlobalStartLocation;
 
+	UPROPERTY(EditAnywhere)
+	int ActiveTriggers = 1;
+
 public:
 
 	AMovingPlatforms();
@@ -31,5 +34,7 @@ public:
 	UPROPERTY(EditAnywhere, Meta = (MakeEditWidget = true))
 	FVector TargetLocation; // 로컬 기준의 Location 상대적인 위치
 
-	
+	void AddActiveTrigger();
+	void RemoveActiveTrigger();
+
 };
