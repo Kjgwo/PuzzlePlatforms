@@ -14,8 +14,8 @@ class PUZZLEPLATFORMS_API AMovingPlatforms : public AStaticMeshActor
 {
 	GENERATED_BODY()
 private:
-	FVector GlobalTargetLocation;
-	FVector GlobalStartLocation;
+	FVector GlobalTargetLocation; // Target¿« Global Location
+	FVector GlobalStartLocation; // Start¿« Global Location
 
 	UPROPERTY(EditAnywhere)
 	int ActiveTriggers = 1;
