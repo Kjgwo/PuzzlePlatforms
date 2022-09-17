@@ -23,6 +23,7 @@ void UPuzzlePlatformsGameInstance::Host()
 	
 	Engine->AddOnScreenDebugMessage(0, 2, FColor::Green, TEXT("Hosting"));
 
+
 	UWorld* World = GetWorld();
 	if (!ensure(World != nullptr)) return;
 
