@@ -4,15 +4,24 @@
 #include "PuzzlePlatformsGameInstance.h"
 
 #include "Engine/Engine.h"
+#include "UObject/ConstructorHelpers.h" // FClassFinder 사용
+#include "Blueprint/UserWidget.h" // UUserWidget 사용
+
+
+#include "PlatformsTrigger.h"
 
 UPuzzlePlatformsGameInstance::UPuzzlePlatformsGameInstance(const FObjectInitializer& ObjectInitializer)
 {
-	UE_LOG(LogTemp, Warning, TEXT("GameInstance Constructor"));
+	ConstructorHelpers::FClassFinder<UUserWidget> MenuBPClass(TEXT("/Game/MenuSystem/WB_MainMenu")); // MainMenu BP_class 불러오기 ( FClassFinder )
+	if (!ensure(MenuBPClass.Class != nullptr)) return;
+	
+	MenuClass = MenuBPClass.Class;
+
 }
 
 void UPuzzlePlatformsGameInstance::Init()
 {
-	UE_LOG(LogTemp, Warning, TEXT("GameInstance Init"));
+	UE_LOG(LogTemp, Warning, TEXT("Found class %s"), *MenuClass->GetName());
 }
 
 void UPuzzlePlatformsGameInstance::Host()
